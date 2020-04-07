@@ -4,7 +4,7 @@ This is a fork from Andrej Karpathy's <a href="https://github.com/karpathy/covid
 This project organizes the preprints from medarxiv and bioarxiv which house scientific papers before they are published.  This is for the public's quick and free access.
 
 The front-end has been modified using React.
-The back-end has also been modified to serve json.
+The back-end used Flask and has also been modified to serve json.
 
 ```
 cd server
