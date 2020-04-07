@@ -1,0 +1,24 @@
+@import '../node_modules/bulma/bulma.sass';
+
+$is-primary:"#c24d2c";
+
+// Navigation
+.navbar-start {
+  flex-direction: column;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-bottom: 0;
+  letter-spacing: .1rem;
+  padding-bottom: 0;
+}
+
+.navbar {
+  height: 5rem;
+}
+
+.subheading {
+  padding-top: 0;
+}

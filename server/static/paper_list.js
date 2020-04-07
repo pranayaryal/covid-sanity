@@ -1,5 +1,6 @@
 'use strict';
 
+
 class Paper extends React.Component {
   constructor(props) {
     super(props);

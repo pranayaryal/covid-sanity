@@ -6,10 +6,13 @@ import json
 
 from flask import Flask, request, redirect, url_for
 from flask import render_template
+from flask import jsonify
+from flask_cors import CORS
 
 # -----------------------------------------------------------------------------
 
 app = Flask(__name__)
+CORS(app)
 
 # load raw paper data
 with open('jall.json', 'r') as f:
@@ -52,9 +55,12 @@ def search():
     papers = [x[1] for x in scores if x[0] > 0]
     if len(papers) > 40:
         papers = papers[:40]
-    gvars = {'sort_order': 'search', 'search_query': q, 'num_papers': len(jall['rels'])}
-    context = {'papers': papers, 'gvars': gvars}
-    return render_template('index.html', **context)
+    return jsonify({
+      'sort_order': 'search',
+      'search_query': q,
+      'num_papers': len(jall['rels']),
+      'papers': papers,
+    })
 
 @app.route('/sim/<doi_prefix>/<doi_suffix>')
 def sim(doi_prefix=None, doi_suffix=None):
@@ -67,11 +73,23 @@ def sim(doi_prefix=None, doi_suffix=None):
         papers = [jall['rels'][cix] for cix in sim_ix]
     gvars = {'sort_order': 'sim', 'num_papers': len(jall['rels'])}
     context = {'papers': papers, 'gvars': gvars}
-    return render_template('index.html', **context)
+    return jsonify({
+      'sort_order': 'sim',
+      'num_papers': len(jall['rels']),
+      'papers': papers,
+    })
 
-@app.route('/')
+@app.route('/papers')
 def main():
     papers = jall['rels'][:40]
     gvars = {'sort_order': 'latest', 'num_papers': len(jall['rels'])}
-    context = {'papers': papers, 'gvars': gvars}
-    return render_template('index.html', **context)
+    ##context = {'papers': papers, 'gvars': gvars}
+    return jsonify({
+      'sort_order': 'latest',
+      'num_papers': len(jall['rels']),
+      'papers': papers,
+    })
+
+app.debug=True
+app.run(host='0.0.0.0')
+
