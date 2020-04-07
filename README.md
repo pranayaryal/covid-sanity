@@ -1,5 +1,5 @@
 # covid-sanity
-This is a fork from Andrej Karpathy's <a href="https://github.com/karpathy/covid-sanity" target="_blank">covid-sanity project</a>
+This is a fork from Andrej Karpathy's <a href="https://github.com/karpathy/covid-sanity" target="_blank">covid-sanity project</a>.  All credit goes to him.
 
 This project organizes the preprints from medarxiv and bioarxiv which house scientific papers before they are published.  This is for the public's quick and free access.
 
